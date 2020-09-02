@@ -15,10 +15,7 @@ const Tasks = () => {
 
   const handleFormSubmit = event => {
     event.preventDefault()
-
     if (task == '') return 0
-    //se não houver nada escrito, parar função
-
     dispatch(actions.addTask(task))
     updateTask('')
   }

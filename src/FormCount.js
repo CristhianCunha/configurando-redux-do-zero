@@ -21,7 +21,6 @@ const FormCount = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
-    //se não houver nada escrito, parar função
     dispatch(actions.addValue(value))
     updateValue(0)
   }
