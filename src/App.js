@@ -1,9 +1,10 @@
-import React, { useState} from 'react';
-import { connect } from 'react-redux'
-//import { store } from './store'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 
-const App = ({ tasks, addTask }) => {
+const App = () => {
   const [task, updateTask] = useState('')
+  const dispatch = useDispatch()
+  const tasks = useSelector(state => state)
 
   const handleInputChange = event => {
     updateTask(event.target.value)
@@ -11,15 +12,14 @@ const App = ({ tasks, addTask }) => {
 
   const handleFormSubmit = event => {
     event.preventDefault()
-    if (task === '') {return 0}
-    addTask(task)
+
+    if (task == '') return 0
     //se não houver nada escrito, parar função
-    /*if (task == '') {return 0}
-    store.dispatch({
+
+    dispatch({
       type: 'ADD_TASK',
       payload: task,
-    })*/
-    //updateTasks(oldTasks => [...oldTasks, task,])
+    })
     updateTask('')
   }
 
@@ -38,18 +38,4 @@ const App = ({ tasks, addTask }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  tasks: state,
-})
-
-const mapDispatchToProps = dispatch => ({
-  addTask: task => dispatch({
-    type: 'ADD_TASK',
-    payload: task,
-  })
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  )(App);
+export default App;
