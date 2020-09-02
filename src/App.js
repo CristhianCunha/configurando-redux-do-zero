@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
+import { actions } from './redux/actions/todo'
+import { selectors } from './redux/selectors/todo'
+
 const App = () => {
   const [task, updateTask] = useState('')
   const dispatch = useDispatch()
-  const tasks = useSelector(state => state)
+  const tasks = useSelector(selectors.getTasks)
 
   const handleInputChange = event => {
     updateTask(event.target.value)
@@ -16,10 +19,7 @@ const App = () => {
     if (task == '') return 0
     //se não houver nada escrito, parar função
 
-    dispatch({
-      type: 'ADD_TASK',
-      payload: task,
-    })
+    dispatch(actions.addTask(task))
     updateTask('')
   }
 
