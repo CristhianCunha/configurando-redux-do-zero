@@ -6,6 +6,7 @@ import { actions } from '../actions/count'
 const count = handleActions({
   [actions.increaseCount]: (state,action) => state+action.payload,
   [actions.multiplyCount]: (state,action) => state*action.payload,
+  [actions.addValue]: (state,action) => state+parseFloat(action.payload),
 }, 0)
 
 const reducers = combineReducers({
