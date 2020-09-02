@@ -8,7 +8,7 @@ const tasks = handleActions({
     ...state,
     action.payload,
     ]
-}, [])
+},[])
 
 const reducers = combineReducers({
   tasks,

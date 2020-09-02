@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { actions } from './redux/actions/todo'
 import { selectors } from './redux/selectors/todo'
 
-const App = () => {
+const Tasks = () => {
   const [task, updateTask] = useState('')
   const dispatch = useDispatch()
   const tasks = useSelector(selectors.getTasks)
@@ -38,4 +38,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default Tasks;

@@ -1,0 +1,6 @@
+const types = {
+  COUNT_INCREASE_VALUE: 'COUNT_INCREASE_VALUE',
+  COUNT_MULTIPLY_VALUE: 'COUNT_MULTIPLY_VALUE',
+}
+
+export { types }
