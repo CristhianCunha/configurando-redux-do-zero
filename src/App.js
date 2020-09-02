@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState} from 'react';
+import { connect } from 'react-redux'
+//import { store } from './store'
 
-function App() {
+const App = ({ tasks, addTask }) => {
+  const [task, updateTask] = useState('')
+
+  const handleInputChange = event => {
+    updateTask(event.target.value)
+  }
+
+  const handleFormSubmit = event => {
+    event.preventDefault()
+    if (task === '') {return 0}
+    addTask(task)
+    //se não houver nada escrito, parar função
+    /*if (task == '') {return 0}
+    store.dispatch({
+      type: 'ADD_TASK',
+      payload: task,
+    })*/
+    //updateTasks(oldTasks => [...oldTasks, task,])
+    updateTask('')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <form onSubmit={handleFormSubmit} >
+        <input onChange={handleInputChange} value={task} />
+        <button>Add</button>
+      </form>
+      <ul>
+        {tasks.map((t, i) => (
+          <li key={i}>{t}</li>
+        ))}
+      </ul>
+    </>
+  )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  tasks: state,
+})
+
+const mapDispatchToProps = dispatch => ({
+  addTask: task => dispatch({
+    type: 'ADD_TASK',
+    payload: task,
+  })
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  )(App);
